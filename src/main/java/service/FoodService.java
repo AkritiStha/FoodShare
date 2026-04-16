@@ -27,10 +27,10 @@ public class FoodService {
                               String expiryStr, String pickupLocation,
                               String latStr, String lonStr) {
         String err;
-        if (ValidationUtil.isBlank(name))         return "Food name is required.";
+        if ((err = ValidationUtil.validateName(name)) != null) return err;
         if ((err = ValidationUtil.validateQuantity(quantityStr)) != null) return err;
         if ((err = ValidationUtil.validateExpiryDate(expiryStr)) != null) return err;
-        if (ValidationUtil.isBlank(pickupLocation)) return "Pickup location is required.";
+        if ((err = ValidationUtil.validateAddress(pickupLocation)) != null) return err;
 
         double lat = parseCoord(latStr);
         double lon = parseCoord(lonStr);
@@ -60,10 +60,10 @@ public class FoodService {
                                  String description, String expiryStr,
                                  String pickupLocation, String latStr, String lonStr) {
         String err;
-        if (ValidationUtil.isBlank(name))         return "Food name is required.";
+        if ((err = ValidationUtil.validateName(name)) != null) return err;
         if ((err = ValidationUtil.validateQuantity(quantityStr)) != null) return err;
         if ((err = ValidationUtil.validateExpiryDate(expiryStr)) != null) return err;
-        if (ValidationUtil.isBlank(pickupLocation)) return "Pickup location is required.";
+        if ((err = ValidationUtil.validateAddress(pickupLocation)) != null) return err;
 
         try {
             FoodItem item = new FoodItem();

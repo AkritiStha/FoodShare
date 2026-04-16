@@ -2,15 +2,11 @@
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
-                             https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
-         version="5.0">
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
 
     <display-name>FoodShare</display-name>
-    <description>FoodShare – Food Waste Reduction Platform (CS5054NT)</description>
 
-    <!-- ════════════════════════════════════════════════════════
-         SESSION CONFIGURATION – 30 minute timeout
-    ════════════════════════════════════════════════════════ -->
     <session-config>
         <session-timeout>30</session-timeout>
         <cookie-config>
@@ -18,247 +14,11 @@
         </cookie-config>
     </session-config>
 
-    <!-- ════════════════════════════════════════════════════════
-         WELCOME FILE
-    ════════════════════════════════════════════════════════ -->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
-    <!-- ════════════════════════════════════════════════════════
-         FILTERS  (order matters: Auth runs first, then Role)
-    ════════════════════════════════════════════════════════ -->
-
-    <!-- 1. Authentication Filter -->
-    <filter>
-        <filter-name>AuthenticationFilter</filter-name>
-        <filter-class>filter.AuthenticationFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <!-- 2. Role Filter -->
-    <filter>
-        <filter-name>RoleFilter</filter-name>
-        <filter-class>filter.RoleFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>RoleFilter</filter-name>
-        <url-pattern>/donor/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>RoleFilter</filter-name>
-        <url-pattern>/ngo/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>RoleFilter</filter-name>
-        <url-pattern>/admin/*</url-pattern>
-    </filter-mapping>
-
-    <!-- ════════════════════════════════════════════════════════
-         SERVLETS
-    ════════════════════════════════════════════════════════ -->
-
-    <!-- Auth -->
-    <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>controller.LoginServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>controller.RegisterServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RegisterServlet</servlet-name>
-        <url-pattern>/register</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>controller.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-
-    <!-- Profile (shared all roles) -->
-    <servlet>
-        <servlet-name>ProfileServlet</servlet-name>
-        <servlet-class>controller.ProfileServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ProfileServlet</servlet-name>
-        <url-pattern>/profile</url-pattern>
-    </servlet-mapping>
-
-    <!-- Donor -->
-    <servlet>
-        <servlet-name>DonorDashboardServlet</servlet-name>
-        <servlet-class>controller.DonorDashboardServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DonorDashboardServlet</servlet-name>
-        <url-pattern>/donor/dashboard</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AddFoodServlet</servlet-name>
-        <servlet-class>controller.AddFoodServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddFoodServlet</servlet-name>
-        <url-pattern>/donor/addFood</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>UpdateFoodServlet</servlet-name>
-        <servlet-class>controller.UpdateFoodServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UpdateFoodServlet</servlet-name>
-        <url-pattern>/donor/updateFood</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>DeleteFoodServlet</servlet-name>
-        <servlet-class>controller.DeleteFoodServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DeleteFoodServlet</servlet-name>
-        <url-pattern>/donor/deleteFood</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>MyListingsServlet</servlet-name>
-        <servlet-class>controller.MyListingsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MyListingsServlet</servlet-name>
-        <url-pattern>/donor/myListings</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>RequestsReceivedServlet</servlet-name>
-        <servlet-class>controller.RequestsReceivedServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RequestsReceivedServlet</servlet-name>
-        <url-pattern>/donor/requests</url-pattern>
-    </servlet-mapping>
-
-    <!-- NGO -->
-    <servlet>
-        <servlet-name>NgoDashboardServlet</servlet-name>
-        <servlet-class>controller.NgoDashboardServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>NgoDashboardServlet</servlet-name>
-        <url-pattern>/ngo/dashboard</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>SearchFoodServlet</servlet-name>
-        <servlet-class>controller.SearchFoodServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SearchFoodServlet</servlet-name>
-        <url-pattern>/ngo/searchFood</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>RequestFoodServlet</servlet-name>
-        <servlet-class>controller.RequestFoodServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RequestFoodServlet</servlet-name>
-        <url-pattern>/ngo/requestFood</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>MyRequestsServlet</servlet-name>
-        <servlet-class>controller.MyRequestsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MyRequestsServlet</servlet-name>
-        <url-pattern>/ngo/myRequests</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>RateRequestServlet</servlet-name>
-        <servlet-class>controller.RateRequestServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RateRequestServlet</servlet-name>
-        <url-pattern>/ngo/rateRequest</url-pattern>
-    </servlet-mapping>
-
-    <!-- Admin -->
-    <servlet>
-        <servlet-name>AdminDashboardServlet</servlet-name>
-        <servlet-class>controller.AdminDashboardServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminDashboardServlet</servlet-name>
-        <url-pattern>/admin/dashboard</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AdminManageUsersServlet</servlet-name>
-        <servlet-class>controller.AdminManageUsersServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminManageUsersServlet</servlet-name>
-        <url-pattern>/admin/manageUsers</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AdminManageFoodServlet</servlet-name>
-        <servlet-class>controller.AdminManageFoodServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminManageFoodServlet</servlet-name>
-        <url-pattern>/admin/manageFood</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AdminReportsServlet</servlet-name>
-        <servlet-class>controller.AdminReportsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminReportsServlet</servlet-name>
-        <url-pattern>/admin/reports</url-pattern>
-    </servlet-mapping>
-
-    <!-- Shared pages -->
-    <servlet>
-        <servlet-name>AboutServlet</servlet-name>
-        <servlet-class>controller.AboutServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AboutServlet</servlet-name>
-        <url-pattern>/about</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ContactServlet</servlet-name>
-        <servlet-class>controller.ContactServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ContactServlet</servlet-name>
-        <url-pattern>/contact</url-pattern>
-    </servlet-mapping>
-
-    <!-- ════════════════════════════════════════════════════════
-         CUSTOM ERROR PAGES
-    ════════════════════════════════════════════════════════ -->
+    <!-- Error Pages -->
     <error-page>
         <error-code>403</error-code>
         <location>/error/403.jsp</location>
@@ -272,9 +32,26 @@
         <location>/error/500.jsp</location>
     </error-page>
 
-    <!-- ════════════════════════════════════════════════════════
-         JSP CONFIGURATION
-    ════════════════════════════════════════════════════════ -->
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>RoleFilter</filter-name>
+        <filter-class>filter.RoleFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>RoleFilter</filter-name>
+        <url-pattern>/donor/*</url-pattern>
+        <url-pattern>/ngo/*</url-pattern>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>

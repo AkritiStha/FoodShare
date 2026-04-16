@@ -16,7 +16,6 @@ import java.util.Set;
  *
  * Session timeout is set in web.xml to 30 minutes.
  */
-@WebFilter("/*")
 public class AuthenticationFilter implements Filter {
 
     /** Paths that do not require authentication. */
@@ -40,7 +39,12 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
 
         String contextPath = req.getContextPath();
-        String uri         = req.getRequestURI().substring(contextPath.length());
+        String uri         = req.getRequestURI();
+        
+        // Remove context path correctly to get relative URI starting with /
+        if (contextPath != null && !contextPath.isEmpty() && !"/".equals(contextPath)) {
+            uri = uri.substring(contextPath.length());
+        }
 
         // Allow public paths and static resources through
         if (isPublic(uri)) {

@@ -14,7 +14,6 @@ import java.io.IOException;
  *
  * Must run AFTER AuthenticationFilter (guaranteed by declaration order in web.xml).
  */
-@WebFilter({"/donor/*", "/ngo/*", "/admin/*"})
 public class RoleFilter implements Filter {
 
     @Override
@@ -28,22 +27,28 @@ public class RoleFilter implements Filter {
         User user = (session != null) ? (User) session.getAttribute("user") : null;
 
         if (user == null) {
-            // Should have been caught by AuthenticationFilter, but guard anyway
             resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }
 
         String uri  = req.getRequestURI();
+        String ctx  = req.getContextPath();
+        String path = uri.substring(ctx.length());
         String role = user.getRole();
 
-        boolean allowed =
-                (uri.contains("/donor/") && "donor".equals(role)) ||
-                        (uri.contains("/ngo/")   && "ngo".equals(role))   ||
-                        (uri.contains("/admin/") && "admin".equals(role));
+        // Stricter role-based checks
+        boolean forbidden = false;
+        if (path.startsWith("/donor/") && !"donor".equals(role) && !"admin".equals(role)) {
+            forbidden = true;
+        } else if (path.startsWith("/ngo/") && !"ngo".equals(role) && !"admin".equals(role)) {
+            forbidden = true;
+        } else if (path.startsWith("/admin/") && !"admin".equals(role)) {
+            forbidden = true;
+        }
 
-        if (!allowed) {
+        if (forbidden) {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN,
-                    "You do not have permission to access this page.");
+                    "You do not have permission to access this area.");
             return;
         }
 

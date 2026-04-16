@@ -28,14 +28,20 @@ public class UserService {
         if ((err = ValidationUtil.validateName(name))     != null) return err;
         if ((err = ValidationUtil.validateEmail(email))   != null) return err;
         if ((err = ValidationUtil.validatePassword(password)) != null) return err;
+        if ((err = ValidationUtil.validatePhone(phone))    != null) return err;
+        if ((err = ValidationUtil.validateAddress(address)) != null) return err;
         if (!List.of("donor", "ngo").contains(role)) return "Invalid role selected.";
 
+        String normalizedEmail = email.trim().toLowerCase();
+
         try {
-            if (userDAO.emailExists(email)) return "An account with this email already exists.";
+            if (userDAO.emailExists(normalizedEmail)) {
+                return "An account with this email already exists.";
+            }
 
             User user = new User();
             user.setName(name.trim());
-            user.setEmail(email.trim().toLowerCase());
+            user.setEmail(normalizedEmail);
             user.setPassword(PasswordUtil.hashPassword(password));
             user.setRole(role);
             user.setPhone(phone == null ? "" : phone.trim());
@@ -46,6 +52,10 @@ public class UserService {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            // Check if it's a duplicate key violation (SQLState 23000)
+            if ("23000".equals(e.getSQLState()) || e.getErrorCode() == 1062) {
+                return "An account with this email already exists.";
+            }
             return "A database error occurred. Please try again.";
         }
     }
@@ -97,8 +107,11 @@ public class UserService {
     }
 
     public String updateProfile(int userId, String name, String phone, String address) {
-        String err = ValidationUtil.validateName(name);
-        if (err != null) return err;
+        String err;
+        if ((err = ValidationUtil.validateName(name))     != null) return err;
+        if ((err = ValidationUtil.validatePhone(phone))    != null) return err;
+        if ((err = ValidationUtil.validateAddress(address)) != null) return err;
+
         try {
             User user = new User();
             user.setId(userId);

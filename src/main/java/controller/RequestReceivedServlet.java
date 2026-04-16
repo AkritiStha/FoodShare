@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * Handles GET (view incoming requests) and POST (accept/reject request).
  */
 @WebServlet("/donor/requests")
-public class RequestsReceivedServlet extends HttpServlet {
+public class RequestReceivedServlet extends HttpServlet {
 
     private final RequestService requestService = new RequestService();
 

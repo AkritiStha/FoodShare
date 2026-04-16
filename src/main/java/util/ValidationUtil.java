@@ -15,7 +15,7 @@ public class ValidationUtil {
             Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
 
     private static final Pattern PHONE_PATTERN =
-            Pattern.compile("^[\\d\\s\\+\\-\\(\\)]{7,20}$");
+            Pattern.compile("^\\+?[0-9]{7,15}$");
 
     private static final DateTimeFormatter DT_FORMAT =
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
@@ -52,11 +52,19 @@ public class ValidationUtil {
         return null;
     }
 
-    /** Validates a phone number format (optional field – pass null to skip). */
+    /** Validates a phone number format (must be 7-15 digits, optional leading +). */
     public static String validatePhone(String phone) {
-        if (isBlank(phone)) return null; // optional
+        if (isBlank(phone))                      return "Phone number is required.";
         if (!PHONE_PATTERN.matcher(phone.trim()).matches())
-            return "Phone number format is invalid.";
+            return "Phone number must be between 7 and 15 digits (e.g., +44123456789).";
+        return null;
+    }
+
+    /** Validates address: non-blank, 5-255 characters. */
+    public static String validateAddress(String address) {
+        if (isBlank(address))                    return "Address is required.";
+        if (address.trim().length() < 5)         return "Address must be at least 5 characters.";
+        if (address.trim().length() > 255)       return "Address must not exceed 255 characters.";
         return null;
     }
 

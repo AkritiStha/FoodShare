@@ -55,7 +55,7 @@ public class RequestService {
             // Notify the donor
             Notification n = new Notification(
                     item.getDonorId(),
-                    "An NGO has requested your food listing: "" + item.getName() + ""."
+                    "An NGO has requested your food listing: \"" + item.getName() + "\"."
             );
             notificationDAO.createNotification(n);
 
@@ -95,7 +95,7 @@ public class RequestService {
             // Notify the NGO
             Notification n = new Notification(
                     req.getNgoId(),
-                    "Your request for "" + req.getFoodItemName() + "" has been ACCEPTED. " +
+                    "Your request for \"" + req.getFoodItemName() + "\" has been ACCEPTED. " +
                     "Pickup scheduled."
             );
             notificationDAO.createNotification(n);
@@ -125,7 +125,7 @@ public class RequestService {
             // Notify the NGO
             Notification n = new Notification(
                     req.getNgoId(),
-                    "Your request for "" + req.getFoodItemName() + "" has been declined by the donor."
+                    "Your request for \"" + req.getFoodItemName() + "\" has been declined by the donor."
             );
             notificationDAO.createNotification(n);
 
@@ -153,7 +153,7 @@ public class RequestService {
             // Notify the NGO
             Notification n = new Notification(
                     req.getNgoId(),
-                    "The donor has marked your pickup of "" + req.getFoodItemName() + "" as COMPLETED. Thank you!"
+                    "The donor has marked your pickup of \"" + req.getFoodItemName() + "\" as COMPLETED. Thank you!"
             );
             notificationDAO.createNotification(n);
 
