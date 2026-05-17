@@ -1,7 +1,6 @@
 package controller;
 
 import model.FoodItem;
-import model.User;
 import service.FoodService;
 
 import jakarta.servlet.ServletException;

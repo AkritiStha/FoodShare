@@ -1,10 +1,8 @@
 package dao;
 
-import model.User;
 import util.DBConnection;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
