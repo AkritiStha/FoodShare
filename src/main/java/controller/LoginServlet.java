@@ -1,5 +1,6 @@
 package controller;
 
+import model.User;
 import service.UserService;
 
 import jakarta.servlet.ServletException;
@@ -58,7 +59,8 @@ public class LoginServlet extends HttpServlet {
             String redirectUrl = (String) session.getAttribute("redirectAfterLogin");
             session.removeAttribute("redirectAfterLogin");
 
-            if (redirectUrl != null && !redirectUrl.isBlank()) {
+            if (redirectUrl != null && !redirectUrl.isBlank()
+                    && isUrlAllowedForRole(redirectUrl, user.getRole())) {
                 resp.sendRedirect(req.getContextPath() + redirectUrl);
             } else {
                 redirectToDashboard(user, req, resp);
@@ -79,5 +81,11 @@ public class LoginServlet extends HttpServlet {
             case "ngo"    -> resp.sendRedirect(ctx + "/ngo/dashboard");
             default       -> resp.sendRedirect(ctx + "/donor/dashboard");
         }
+    }
+    private boolean isUrlAllowedForRole(String url, String role) {
+        if (url.startsWith("/admin/")) return "admin".equals(role);
+        if (url.startsWith("/ngo/"))   return "ngo".equals(role) || "admin".equals(role);
+        if (url.startsWith("/donor/")) return "donor".equals(role) || "admin".equals(role);
+        return true;
     }
 }
