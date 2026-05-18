@@ -1,6 +1,7 @@
 package service;
 
 import dao.UserDAO;
+import model.User;
 import util.PasswordUtil;
 import util.ValidationUtil;
 
@@ -14,7 +15,6 @@ import java.util.List;
 public class UserService {
 
     private final UserDAO userDAO = new UserDAO();
-    private final NotificationService notificationService = new NotificationService();
 
     /**
      * Registers a new user after validating inputs.
@@ -33,7 +33,6 @@ public class UserService {
         if (!List.of("donor", "ngo").contains(role)) return "Invalid role selected.";
 
         String normalizedEmail = email.trim().toLowerCase();
-        String upperName = capitalizeWords(name.trim());
 
         try {
             if (userDAO.emailExists(normalizedEmail)) {
@@ -41,7 +40,7 @@ public class UserService {
             }
 
             User user = new User();
-            user.setName(upperName);
+            user.setName(name.trim());
             user.setEmail(normalizedEmail);
             user.setPassword(PasswordUtil.hashPassword(password));
             user.setRole(role);
@@ -97,12 +96,10 @@ public class UserService {
 
     public void approveUser(int userId) throws SQLException {
         userDAO.setApproval(userId, true);
-        notificationService.sendNotification(userId, "Your account has been approved by the admin. You can now log in.");
     }
 
     public void rejectUser(int userId) throws SQLException {
         userDAO.setApproval(userId, false);
-        notificationService.sendNotification(userId, "Your account request has been rejected by the admin.");
     }
 
     public void deleteUser(int userId) throws SQLException {
@@ -118,7 +115,7 @@ public class UserService {
         try {
             User user = new User();
             user.setId(userId);
-            user.setName(capitalizeWords(name.trim()));
+            user.setName(name.trim());
             user.setPhone(phone == null ? "" : phone.trim());
             user.setAddress(address == null ? "" : address.trim());
             userDAO.updateProfile(user);
@@ -150,21 +147,5 @@ public class UserService {
 
     public int countByRole(String role) throws SQLException {
         return userDAO.countByRole(role);
-    }
-
-    private String capitalizeWords(String str) {
-        if (str == null || str.isEmpty()) return str;
-        String[] words = str.split("\\s+");
-        StringBuilder sb = new StringBuilder();
-        for (String word : words) {
-            if (word.length() > 0) {
-                sb.append(Character.toUpperCase(word.charAt(0)));
-                if (word.length() > 1) {
-                    sb.append(word.substring(1).toLowerCase());
-                }
-                sb.append(" ");
-            }
-        }
-        return sb.toString().trim();
     }
 }
