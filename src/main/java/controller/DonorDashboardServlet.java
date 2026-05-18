@@ -1,5 +1,6 @@
 package controller;
 
+import model.User;
 import service.FoodService;
 import service.NotificationService;
 import service.RequestService;
