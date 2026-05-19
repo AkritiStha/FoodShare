@@ -20,6 +20,7 @@ public class AuthenticationFilter implements Filter {
 
     /** Paths that do not require authentication. */
     private static final Set<String> PUBLIC_PATHS = new HashSet<>(Arrays.asList(
+            "/", "/index.jsp",
             "/login", "/register", "/about", "/contact",
             "/common/login.jsp", "/common/register.jsp",
             "/common/about.jsp", "/common/contact.jsp",

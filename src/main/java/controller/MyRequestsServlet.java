@@ -1,5 +1,6 @@
 package controller;
 
+import model.User;
 import service.RequestService;
 
 import jakarta.servlet.ServletException;

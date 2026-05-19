@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * Admin reports – aggregate metrics for the platform.
  */
 @WebServlet("/admin/reports")
-public class AdminReportsServlet extends HttpServlet {
+public class AdminReportServlet extends HttpServlet {
 
     private final UserService    userService    = new UserService();
     private final FoodService    foodService    = new FoodService();
