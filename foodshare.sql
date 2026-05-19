@@ -116,30 +116,31 @@ CREATE TABLE IF NOT EXISTS pickup_schedules (
 INSERT INTO users (name, email, password, role, phone, address, approved) VALUES
     ('Admin User',
      'admin@foodshare.com',
-     '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lFa6',
+     '$2a$10$pQ5fXkE1SPu/O3e3L/bE7ekp82NVP2JrVJeOO/Wrp/eJNwt0eHLSu',
      'admin', '0000000000', 'FoodShare HQ', 1);
 
 -- Donors
 INSERT INTO users (name, email, password, role, phone, address, approved) VALUES
                                                                               ('Green Leaf Restaurant',
                                                                                'greenleaf@donor.com',
-                                                                               '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lFa6',
+                                                                               '$2a$10$pQ5fXkE1SPu/O3e3L/bE7ekp82NVP2JrVJeOO/Wrp/eJNwt0eHLSu',
                                                                                'donor', '07700111222', '12 High Street, London', 1),
                                                                               ('City Hotel Kitchen',
                                                                                'cityhotel@donor.com',
-                                                                               '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lFa6',
+                                                                               '$2a$10$pQ5fXkE1SPu/O3e3L/bE7ekp82NVP2JrVJeOO/Wrp/eJNwt0eHLSu',
                                                                                'donor', '07700333444', '45 Park Avenue, London', 1);
 
 -- NGOs (require admin approval)
 INSERT INTO users (name, email, password, role, phone, address, approved) VALUES
                                                                               ('Hope Shelter NGO',
                                                                                'hope@ngo.com',
-                                                                               '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lFa6',
+                                                                               '$2a$10$pQ5fXkE1SPu/O3e3L/bE7ekp82NVP2JrVJeOO/Wrp/eJNwt0eHLSu',
                                                                                'ngo', '07700555666', '8 Shelter Road, London', 1),
                                                                               ('Community Kitchen',
                                                                                'community@ngo.com',
-                                                                               '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lFa6',
+                                                                               '$2a$10$pQ5fXkE1SPu/O3e3L/bE7ekp82NVP2JrVJeOO/Wrp/eJNwt0eHLSu',
                                                                                'ngo', '07700777888', '22 Community Lane, London', 1);
+
 
 -- Food items from donors
 INSERT INTO food_items (donor_id, name, quantity, quantity_unit, description, expiry_date, pickup_location, latitude, longitude, status) VALUES

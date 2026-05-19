@@ -146,7 +146,7 @@
     </div>
 </div>
 
-<footer><p>&copy; 2025 FoodShare</p></footer>
+<jsp:include page="../common/footer.jsp" />
 <script src="<%= ctx %>/js/script.js"></script>
 <script>
     document.getElementById('geoBtn').addEventListener('click', function () {

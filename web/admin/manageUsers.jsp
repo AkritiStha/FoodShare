@@ -13,6 +13,7 @@
     <title>Manage Users – FoodShare</title>
     <link rel="stylesheet" href="<%= ctx %>/css/style.css">
 </head>
+
 <body>
 <%@ include file="../common/navbar.jsp" %>
 <div class="page-wrapper">
@@ -90,7 +91,8 @@
         </table>
     </div>
 </div>
-<footer><p>&copy; 2025 FoodShare</p></footer>
+
+<jsp:include page="../common/footer.jsp" />
 <script src="<%= ctx %>/js/script.js"></script>
 </body>
 </html>

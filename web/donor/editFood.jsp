@@ -18,15 +18,15 @@
 <%@ include file="../common/navbar.jsp" %>
 <div class="page-wrapper">
   <div class="page-header">
-    <h1>✏️ Edit Food Listing</h1>
-    <p>Update the details for: <strong><%= item.getName() %></strong></p>
+    <h1 style="text-align: center">✏️ Edit Food Listing</h1>
+    <p style="text-align: center">Update the details for: <strong><%= item.getName() %></strong></p>
   </div>
 
   <% if (request.getAttribute("error") != null) { %>
   <div class="alert alert-error"><span class="alert-icon">⚠️</span> <%= request.getAttribute("error") %></div>
   <% } %>
 
-  <div class="form-card" style="max-width:680px;margin:0;">
+  <div class="form-card" style="max-width:680px;margin:0; justify-self: center">
     <form action="<%= ctx %>/donor/updateFood" method="post" novalidate>
       <input type="hidden" name="id" value="<%= item.getId() %>">
 
@@ -89,7 +89,7 @@
     </form>
   </div>
 </div>
-<footer><p>&copy; 2025 FoodShare</p></footer>
+<jsp:include page="../common/footer.jsp" />
 <script src="<%= ctx %>/js/script.js"></script>
 </body>
 </html>

@@ -136,7 +136,13 @@ FoodShare/
    ```
 3. Copy `FoodShare.war` to `$TOMCAT_HOME/webapps/`.
 4. Start Tomcat: `$TOMCAT_HOME/bin/startup.sh` (or `.bat` on Windows).
-5. Access: [http://localhost:8080/FoodShare](http://localhost:8080/FoodShare)
+5. Access: [http://localhost:8081/](http://localhost:8081/) (Note: port 8081 is used due to Oracle conflict)
+
+### Option D: Quick Start & Fix (Recommended)
+
+1. Double-click `FixAndStart.bat` in the project root.
+2. This will automatically clean up stale processes, rebuild the app, and start the server on [http://localhost:8081/](http://localhost:8081/).
+
 
 ---
 
@@ -158,21 +164,21 @@ All sample accounts use the password: **`Password1!`**
 
 | URL | Description |
 |-----|-------------|
-| `/FoodShare/login` | Login page |
-| `/FoodShare/register` | Registration page |
-| `/FoodShare/donor/dashboard` | Donor dashboard |
-| `/FoodShare/donor/addFood` | Add food listing |
-| `/FoodShare/donor/myListings` | View/edit/delete listings |
-| `/FoodShare/donor/requests` | View & respond to NGO requests |
-| `/FoodShare/ngo/dashboard` | NGO dashboard |
-| `/FoodShare/ngo/searchFood` | Search available food by location |
-| `/FoodShare/ngo/myRequests` | NGO request history + rating |
-| `/FoodShare/admin/dashboard` | Admin overview |
-| `/FoodShare/admin/manageUsers` | Approve / delete users |
-| `/FoodShare/admin/manageFood` | View / delete food listings |
-| `/FoodShare/admin/reports` | Platform reports & metrics |
-| `/FoodShare/about` | About FoodShare |
-| `/FoodShare/contact` | Contact page |
+| `/login` | Login page |
+| `/register` | Registration page |
+| `/donor/dashboard` | Donor dashboard |
+| `/donor/addFood` | Add food listing |
+| `/donor/myListings` | View/edit/delete listings |
+| `/donor/requests` | View & respond to NGO requests |
+| `/ngo/dashboard` | NGO dashboard |
+| `/ngo/searchFood` | Search available food by location |
+| `/ngo/myRequests` | NGO request history + rating |
+| `/admin/dashboard` | Admin overview |
+| `/admin/manageUsers` | Approve / delete users |
+| `/admin/manageFood` | View / delete food listings |
+| `/admin/reports` | Platform reports & metrics |
+| `/about` | About FoodShare |
+| `/contact` | Contact page |
 
 ---
 

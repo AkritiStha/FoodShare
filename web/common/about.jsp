@@ -55,7 +55,7 @@
 
     <div class="flex-between mt-3">
         <% if (session.getAttribute("user") == null) { %>
-        <a href="<%= ctx %>/register" class="btn btn-primary btn-lg">Get Started</a>
+        <a href="<%= ctx %>/register" class="btn btn-primary btn-lg" style="color:white;">Get Started</a>
         <a href="<%= ctx %>/login"    class="btn btn-secondary btn-lg">Sign In</a>
         <% } else { %>
         <a href="<%= ctx %>/" class="btn btn-primary">Go to Dashboard</a>
@@ -63,7 +63,7 @@
         <a href="<%= ctx %>/contact" class="btn btn-secondary">Contact Us</a>
     </div>
 </div>
-<footer><p>&copy; 2025 FoodShare – CS5054NT Coursework</p></footer>
+<jsp:include page="../common/footer.jsp" />
 <script src="<%= ctx %>/js/script.js"></script>
 </body>
 </html>

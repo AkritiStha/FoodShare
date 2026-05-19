@@ -10,13 +10,13 @@
 </head>
 <body>
 <%@ include file="navbar.jsp" %>
-<div class="page-wrapper">
-    <div class="page-header">
-        <h1>📬 Contact Us</h1>
-        <p>Have a question or need support? Fill in the form below.</p>
+<div class="page-wrapper" style="justify-self: center">
+    <div class="page-header" style="justify-self: center">
+        <h1 style="text-align: center">Contact Us</h1>
+        <p style="text-align: center">Have a question or need support? Fill in the form below.</p>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:860px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:860px;justify-self: center">
         <div class="form-card" style="max-width:100%;margin:0;">
             <% if ("1".equals(request.getParameter("sent"))) { %>
             <div class="alert alert-success"><span class="alert-icon">✅</span> Thank you! Your message has been received.</div>
@@ -65,7 +65,7 @@
         </div>
     </div>
 </div>
-<footer><p>&copy; 2025 FoodShare</p></footer>
+<jsp:include page="../common/footer.jsp" />
 <script src="<%= ctx %>/js/script.js"></script>
 </body>
 </html>

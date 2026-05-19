@@ -12,15 +12,15 @@
 <%@ include file="../common/navbar.jsp" %>
 <div class="page-wrapper">
     <div class="page-header">
-        <h1>🍽️ Add Food Listing</h1>
-        <p>List surplus food so NGOs near you can request it.</p>
+        <h1 style="text-align: center">🍽️ Add Food Listing</h1>
+        <p style="text-align: center">List surplus food so NGOs near you can request it.</p>
     </div>
 
     <% if (request.getAttribute("error") != null) { %>
     <div class="alert alert-error"><span class="alert-icon">⚠️</span> <%= request.getAttribute("error") %></div>
     <% } %>
 
-    <div class="form-card" style="max-width:680px;margin:0;">
+    <div class="form-card" style="max-width:680px;margin:0;justify-self: center">
         <form action="<%= ctx %>/donor/addFood" method="post" novalidate>
 
             <div class="form-group">
@@ -89,7 +89,7 @@
         </form>
     </div>
 </div>
-<footer><p>&copy; 2025 FoodShare</p></footer>
+<jsp:include page="../common/footer.jsp" />
 <script src="<%= ctx %>/js/script.js"></script>
 <script>
     document.getElementById('geoBtn').addEventListener('click', function () {
