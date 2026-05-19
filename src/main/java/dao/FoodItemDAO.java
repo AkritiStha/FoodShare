@@ -3,7 +3,6 @@ package dao;
 import model.FoodItem;
 import util.DBConnection;
 
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
